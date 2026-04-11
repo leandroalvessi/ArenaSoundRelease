@@ -113,6 +113,7 @@ body {
   border-radius: 16px;
   padding: 28px 32px;
   width: 210px;
+  min-height: 270px;
   text-decoration: none;
   color: #fff;
   transition: border-color .25s, background .25s, transform .2s, opacity .2s;
@@ -149,10 +150,17 @@ body {
   letter-spacing: 2px;
   color: rgba(232, 160, 32, 0.6);
   text-transform: uppercase;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .dl-btn {
-  margin-top: 6px;
+  margin-top: auto;
   background: linear-gradient(135deg, #e8a020, #e8620a);
   color: #000;
   font-family: 'Rajdhani', sans-serif;
