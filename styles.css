@@ -1,0 +1,248 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold: #e8a020;
+  --gold2: #f5c842;
+  --dark: #080a0e;
+  --dark2: #0f1218;
+  --dark3: #1a1f2e;
+  --accent: #00cfff;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--dark);
+  font-family: 'Rajdhani', sans-serif;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 30%, #1a1e2e 0%, #080a0e 100%);
+  z-index: 0;
+}
+
+.grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(232, 160, 32, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 160, 32, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  width: 100%;
+  text-align: center;
+}
+
+.logo {
+  margin-bottom: 10px;
+}
+
+.logo-a {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 64px;
+  letter-spacing: 8px;
+  background: linear-gradient(135deg, #f5c842, #e8820a, #f5c842);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 16px rgba(232, 160, 32, 0.4));
+  display: inline;
+}
+
+.logo-b {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 64px;
+  letter-spacing: 8px;
+  color: #fff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+  display: inline;
+  margin-left: 16px;
+}
+
+.logo-sub {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  color: rgba(232, 160, 32, 0.6);
+  text-transform: uppercase;
+  margin-top: 8px;
+  margin-bottom: 28px;
+}
+
+.tagline {
+  font-size: 22px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 1px;
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+
+.tagline span {
+  color: var(--gold);
+}
+
+.download-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.dl-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(232, 160, 32, 0.2);
+  border-radius: 16px;
+  padding: 28px 32px;
+  width: 210px;
+  text-decoration: none;
+  color: #fff;
+  transition: border-color .25s, background .25s, transform .2s, opacity .2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.dl-card:hover {
+  border-color: var(--gold);
+  background: rgba(232, 160, 32, 0.08);
+  transform: translateY(-4px);
+}
+
+.dl-card.is-missing {
+  opacity: 0.72;
+}
+
+.dl-icon {
+  font-size: 42px;
+  line-height: 1;
+}
+
+.dl-os {
+  font-family: 'Black Han Sans', sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: #fff;
+}
+
+.dl-ext {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: rgba(232, 160, 32, 0.6);
+  text-transform: uppercase;
+}
+
+.dl-btn {
+  margin-top: 6px;
+  background: linear-gradient(135deg, #e8a020, #e8620a);
+  color: #000;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: opacity .2s;
+  pointer-events: none;
+}
+
+.dl-card:hover .dl-btn {
+  opacity: 0.85;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 160, 32, 0.25), transparent);
+  margin-bottom: 36px;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 28px 48px;
+  margin-bottom: 48px;
+}
+
+.feat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.feat-icon {
+  font-size: 26px;
+}
+
+.feat-text {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+}
+
+.footer {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 2px;
+}
+
+.footer a {
+  color: rgba(232, 160, 32, 0.5);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.footer a:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 28px 16px;
+  }
+
+  .logo-a,
+  .logo-b {
+    font-size: 46px;
+    letter-spacing: 5px;
+  }
+
+  .logo-b {
+    margin-left: 10px;
+  }
+
+  .tagline {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+
+  .download-grid {
+    margin-bottom: 36px;
+  }
+}
