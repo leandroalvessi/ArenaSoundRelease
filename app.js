@@ -5,6 +5,12 @@ const latestReleaseUrl = `${repoUrl}/releases/latest`;
 const releasesUrl = `${repoUrl}/releases`;
 const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/releases/latest`;
 
+const directDownloadUrls = {
+  windows: `${repoUrl}/releases/latest/download/ArenaSoundSetup.exe`,
+  mac: `${repoUrl}/releases/latest/download/ArenaSound.dmg`,
+  linux: `${repoUrl}/releases/latest/download/ArenaSound.AppImage`
+};
+
 const platformMatchers = {
   windows: [/\.exe$/i, /setup/i, /installer/i],
   mac: [/\.dmg$/i],
@@ -13,6 +19,10 @@ const platformMatchers = {
 
 const downloadCards = Array.from(document.querySelectorAll('.dl-card'));
 const allReleasesLinkNode = document.getElementById('allReleasesLink');
+
+function getFallbackUrl(platform) {
+  return directDownloadUrls[platform] || latestReleaseUrl;
+}
 
 function findAsset(assets, platform) {
   const matchers = platformMatchers[platform] || [];
@@ -46,7 +56,7 @@ async function loadRelease() {
   }
 
   for (const card of downloadCards) {
-    card.href = latestReleaseUrl;
+    card.href = getFallbackUrl(card.dataset.platform);
   }
 
   try {
@@ -71,8 +81,8 @@ async function loadRelease() {
   } catch (error) {
     for (const card of downloadCards) {
       card.classList.add('is-missing');
-      card.href = latestReleaseUrl;
-      card.title = 'Abrir página de releases';
+      card.href = getFallbackUrl(card.dataset.platform);
+      card.title = 'Baixar instalador';
     }
 
     console.error(error);
