@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Arena Sound - Conferencia de Downloads</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Black+Han+Sans&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+
+<div class="container">
+  <div class="logo">
+    <span class="logo-a">ARENA</span>
+    <span class="logo-b">SOUND</span>
+  </div>
+  <div class="logo-sub">Conferencia de downloads</div>
+
+  <div class="stats-card">
+    <div class="stats-title">Selecionar release</div>
+    <div class="stats-controls">
+      <select id="releaseSelect" class="stats-select"></select>
+      <button id="refreshStats" class="stats-button" type="button">Atualizar</button>
+    </div>
+  </div>
+
+  <div class="stats-card">
+    <div class="stats-title" id="selectedReleaseTitle">Downloads da release selecionada</div>
+
+    <div class="stats-row">
+      <span class="stats-label">Windows</span>
+      <span class="stats-value" id="countWindows">--</span>
+    </div>
+    <div class="stats-row">
+      <span class="stats-label">macOS</span>
+      <span class="stats-value" id="countMac">--</span>
+    </div>
+    <div class="stats-row">
+      <span class="stats-label">Linux</span>
+      <span class="stats-value" id="countLinux">--</span>
+    </div>
+
+    <div class="stats-total" id="countTotal">Total: --</div>
+  </div>
+
+  <div class="stats-card">
+    <div class="stats-title">Historico de todas as releases</div>
+
+    <div class="stats-row">
+      <span class="stats-label">Windows</span>
+      <span class="stats-value" id="historyWindows">--</span>
+    </div>
+    <div class="stats-row">
+      <span class="stats-label">macOS</span>
+      <span class="stats-value" id="historyMac">--</span>
+    </div>
+    <div class="stats-row">
+      <span class="stats-label">Linux</span>
+      <span class="stats-value" id="historyLinux">--</span>
+    </div>
+
+    <div class="stats-total" id="historyTotal">Total: --</div>
+    <div class="stats-update" id="statsUpdatedAt">Atualizando...</div>
+  </div>
+
+  <div class="footer">
+    Pagina privada de conferencia
+  </div>
+</div>
+
+<script src="conferencia.js"></script>
+</body>
+</html>
