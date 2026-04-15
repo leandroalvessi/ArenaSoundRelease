@@ -10,6 +10,34 @@ const platformMatchers = {
 
 let releasesCache = [];
 
+function closeReleaseMenu() {
+  const dropdown = document.getElementById('releaseDropdown');
+  const button = document.getElementById('releaseSelectButton');
+
+  dropdown?.classList.remove('is-open');
+  button?.setAttribute('aria-expanded', 'false');
+}
+
+function openReleaseMenu() {
+  const dropdown = document.getElementById('releaseDropdown');
+  const button = document.getElementById('releaseSelectButton');
+
+  dropdown?.classList.add('is-open');
+  button?.setAttribute('aria-expanded', 'true');
+}
+
+function toggleReleaseMenu() {
+  const dropdown = document.getElementById('releaseDropdown');
+  if (!dropdown) return;
+
+  if (dropdown.classList.contains('is-open')) {
+    closeReleaseMenu();
+    return;
+  }
+
+  openReleaseMenu();
+}
+
 function formatCount(value) {
   return new Intl.NumberFormat('pt-BR').format(value || 0);
 }
@@ -81,27 +109,42 @@ function renderHistoryStats(releases) {
 }
 
 function fillReleaseSelect(releases) {
-  const select = document.getElementById('releaseSelect');
-  if (!select) return;
+  const menu = document.getElementById('releaseSelectMenu');
+  const label = document.getElementById('releaseSelectLabel');
+  const button = document.getElementById('releaseSelectButton');
+  if (!menu || !label || !button) return;
 
-  select.innerHTML = '';
+  menu.innerHTML = '';
 
   for (const release of releases) {
-    const option = document.createElement('option');
-    option.value = release.id;
+    const option = document.createElement('button');
+    option.type = 'button';
+    option.className = 'stats-select-option';
+    option.setAttribute('role', 'option');
+    option.dataset.releaseId = String(release.id);
     option.textContent = getReleaseLabel(release);
-    select.appendChild(option);
+    option.addEventListener('click', () => {
+      label.textContent = getReleaseLabel(release);
+      menu.querySelectorAll('.stats-select-option').forEach((node) => {
+        node.classList.toggle('is-selected', node === option);
+        node.setAttribute('aria-selected', node === option ? 'true' : 'false');
+      });
+      renderSelectedReleaseStats(release);
+      closeReleaseMenu();
+    });
+    menu.appendChild(option);
   }
 
-  if (releases[0]?.id) {
-    select.value = String(releases[0].id);
+  if (releases[0]) {
+    label.textContent = getReleaseLabel(releases[0]);
+    const firstOption = menu.querySelector('.stats-select-option');
+    if (firstOption) {
+      firstOption.classList.add('is-selected');
+      firstOption.setAttribute('aria-selected', 'true');
+    }
   }
 
-  select.onchange = () => {
-    const selectedId = Number(select.value);
-    const selectedRelease = releasesCache.find((release) => release.id === selectedId);
-    renderSelectedReleaseStats(selectedRelease);
-  };
+  button.onclick = toggleReleaseMenu;
 }
 
 async function fetchAllReleases() {
@@ -160,5 +203,17 @@ async function loadDownloadCounts() {
 }
 
 document.getElementById('refreshStats')?.addEventListener('click', loadDownloadCounts);
+
+document.addEventListener('click', (event) => {
+  const dropdown = document.getElementById('releaseDropdown');
+  if (!dropdown || dropdown.contains(event.target)) return;
+  closeReleaseMenu();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    closeReleaseMenu();
+  }
+});
 
 loadDownloadCounts();

@@ -22,7 +22,13 @@
   <div class="stats-card">
     <div class="stats-title">Selecionar release</div>
     <div class="stats-controls">
-      <select id="releaseSelect" class="stats-select"></select>
+      <div class="stats-select-wrap" id="releaseDropdown">
+        <button id="releaseSelectButton" class="stats-select-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span id="releaseSelectLabel">Carregando releases...</span>
+          <span class="stats-select-arrow" aria-hidden="true">&#9662;</span>
+        </button>
+        <div id="releaseSelectMenu" class="stats-select-menu" role="listbox" aria-label="Selecionar release"></div>
+      </div>
       <button id="refreshStats" class="stats-button" type="button">Atualizar</button>
     </div>
   </div>
